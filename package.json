@@ -1,6 +1,9 @@
 {
-  "name": "vite-project",
+  "name": "react-vite-basic",
   "private": true,
+  "author": {
+    "name": "Nguyễn Minh Nghĩa"
+  },
   "version": "0.0.0",
   "type": "module",
   "scripts": {
