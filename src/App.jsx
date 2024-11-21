@@ -11,11 +11,15 @@ const App = () => {
     country: "Viet Nam",
   };
 
+  const handleAddNewTodo = (name) => {
+    alert(`Call me now, baby ^.^ ${name}`);
+  };
+
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
 
-      <TodoNew />
+      <TodoNew handleAddNewTodo={handleAddNewTodo} />
 
       <TodoData data={data} />
 
