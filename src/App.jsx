@@ -2,8 +2,20 @@ import "./components/todo/todo.css";
 import TodoData from "./components/todo/TodoData";
 import TodoNew from "./components/todo/TodoNew";
 import reactLogo from "./assets/react.svg";
+import { useState } from "react";
 
 const App = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [todoList, setTodoList] = useState([
+    {
+      id: 1,
+      task: "Learning React",
+    },
+    {
+      id: 2,
+      task: "Watching Youtube",
+    },
+  ]);
   const data = {
     name: "Nguyen Minh Nghia",
     age: 1995,
@@ -21,7 +33,7 @@ const App = () => {
 
       <TodoNew handleAddNewTodo={handleAddNewTodo} />
 
-      <TodoData data={data} />
+      <TodoData data={data} todoList={todoList} />
 
       <div className="todo-image">
         <img src={reactLogo} className="logo" alt="react-logo" />

@@ -12,7 +12,7 @@ const TodoData = (props) => {
       country: "Viet Nam",
     }
   } */
-  // console.log(">>> check props: ", props);
+  console.log(">>> check props: ", props);
   // Thay vì:
   // const data = props.data;
 
@@ -23,6 +23,7 @@ const TodoData = (props) => {
       <div>My name is {props.data.name}</div>
       <p>Learning React</p>
       <p>Watching Youtube</p>
+      <p>{JSON.stringify(props.todoList)}</p>
     </div>
   );
 };

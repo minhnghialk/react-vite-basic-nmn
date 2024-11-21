@@ -1,19 +1,22 @@
-/* eslint-disable react/prop-types */
+import { useState } from "react";
 
-// eslint-disable-next-line no-unused-vars
-const TodoNew = ({ handleAddNewTodo }) => {
+const TodoNew = () => {
   // handleAddNewTodo("Nghia");
+
+  const [valueInput, setValueInput] = useState("");
 
   // const handleOnChange = (e) => {
   //   console.log(">>> handle on change: ", e.target.value);
   // };
 
   const handleOnChange = (task) => {
-    console.log(">>> handle on change: ", task);
+    // console.log(">>> handle on change: ", task);
+    setValueInput(task);
   };
 
   const handleClick = () => {
-    alert("Click me!");
+    // alert("Click me!");
+    console.log(">>> check value input: ", valueInput);
   };
 
   return (
@@ -26,6 +29,7 @@ const TodoNew = ({ handleAddNewTodo }) => {
       />
 
       <button onClick={handleClick}>Add</button>
+      <div>My text input is: {valueInput}</div>
     </div>
   );
 };
