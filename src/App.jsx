@@ -5,23 +5,14 @@ import reactLogo from "./assets/react.svg";
 import { useState } from "react";
 
 const App = () => {
-  const data = {
+  /*   const data = {
     name: "Nguyen Minh Nghia",
     age: 1995,
     address: "Ho Chi Minh City",
     country: "Viet Nam",
-  };
+  }; */
 
-  const [todoList, setTodoList] = useState([
-    {
-      id: 1,
-      task: "Learning React",
-    },
-    {
-      id: 2,
-      task: "Watching Youtube",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   // Hàm tạo ra ID
   // Javascript random number between range
@@ -46,7 +37,7 @@ const App = () => {
 
       <TodoNew handleAddNewTodo={handleAddNewTodo} />
 
-      <TodoData data={data} todoList={todoList} />
+      <TodoData todoList={todoList} />
 
       <div className="todo-image">
         <img src={reactLogo} className="logo" alt="react-logo" />

@@ -3,9 +3,9 @@
 const TodoData = ({ todoList }) => {
   return (
     <div className="todo-data">
-      {todoList.map((item, index) => {
+      {todoList.map((item) => {
         return (
-          <div key={index} className="todo-item">
+          <div key={item.id} className="todo-item">
             <div>{item.task}</div>
             <div className="todo-item__button">
               <button>Update</button>
