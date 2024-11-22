@@ -5,7 +5,6 @@ import reactLogo from "./assets/react.svg";
 import { useState } from "react";
 
 const App = () => {
-  // eslint-disable-next-line no-unused-vars
   const [todoList, setTodoList] = useState([
     {
       id: 1,
@@ -23,8 +22,28 @@ const App = () => {
     country: "Viet Nam",
   };
 
-  const handleAddNewTodo = (name) => {
-    alert(`Call me now, baby ^.^ ${name}`);
+  // Hàm tạo ra ID
+  // Javascript random number between range
+
+  const randomIntFromInterval = (min, max) => {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  // const rndInt = randomIntFromInterval(1, 6);
+  // console.log("rndInt", rndInt);
+
+  const handleAddNewTodo = (task) => {
+    const newTodo = {
+      id: randomIntFromInterval(1, 1000000),
+      task: task,
+    };
+
+    // Không nên thay đổi (mutate) trực tiếp trạng thái (state) của React bằng method push của array sẽ dễ gặp bug:
+    // todoList.push(newTodo);
+
+    // Thay vào đó nên thực hiện như thế này:
+    setTodoList([...todoList, newTodo]);
   };
 
   return (

@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-const TodoNew = () => {
-  // handleAddNewTodo("Nghia");
-
+// eslint-disable-next-line react/prop-types
+const TodoNew = ({ handleAddNewTodo }) => {
   const [valueInput, setValueInput] = useState("");
 
   // const handleOnChange = (e) => {
@@ -10,13 +9,11 @@ const TodoNew = () => {
   // };
 
   const handleOnChange = (task) => {
-    // console.log(">>> handle on change: ", task);
     setValueInput(task);
   };
 
   const handleClick = () => {
-    // alert("Click me!");
-    console.log(">>> check value input: ", valueInput);
+    handleAddNewTodo(valueInput);
   };
 
   return (
