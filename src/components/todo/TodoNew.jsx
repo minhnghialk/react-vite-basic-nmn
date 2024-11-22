@@ -4,16 +4,13 @@ import { useState } from "react";
 const TodoNew = ({ handleAddNewTodo }) => {
   const [valueInput, setValueInput] = useState("");
 
-  // const handleOnChange = (e) => {
-  //   console.log(">>> handle on change: ", e.target.value);
-  // };
-
-  const handleOnChange = (task) => {
+  const handleOnInputChange = (task) => {
     setValueInput(task);
   };
 
   const handleClick = () => {
     handleAddNewTodo(valueInput);
+    setValueInput(""); //đặt giá trị ô input về lại trạng thái ban đầu
   };
 
   return (
@@ -21,12 +18,11 @@ const TodoNew = ({ handleAddNewTodo }) => {
       <input
         type="text"
         placeholder="Enter your task"
-        // onChange={handleOnChange}
-        onChange={(e) => handleOnChange(e.target.value)}
+        value={valueInput} // kiểm soát giá trị của ô inputÏ
+        onChange={(e) => handleOnInputChange(e.target.value)}
       />
 
       <button onClick={handleClick}>Add</button>
-      <div>My text input is: {valueInput}</div>
     </div>
   );
 };
