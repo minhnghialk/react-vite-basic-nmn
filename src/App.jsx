@@ -32,6 +32,12 @@ const App = () => {
     setTodoList((prevTodoList) => [...prevTodoList, newTodo]);
   };
 
+  const handleDeleteTodo = (id) => {
+    const newTodo = todoList.filter((item) => item.id !== id);
+    console.log("Delete OK!", newTodo);
+    setTodoList(newTodo);
+  };
+
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
@@ -39,7 +45,7 @@ const App = () => {
       <TodoNew handleAddNewTodo={handleAddNewTodo} />
 
       {todoList.length > 0 ? (
-        <TodoData todoList={todoList} />
+        <TodoData todoList={todoList} handleDeleteTodo={handleDeleteTodo} />
       ) : (
         <div className="todo-image">
           <img src={reactLogo} className="logo" alt="react-logo" />

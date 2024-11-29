@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const TodoData = ({ todoList }) => {
+const TodoData = ({ todoList, handleDeleteTodo }) => {
   return (
     <div className="todo-data">
       {todoList.map((item) => {
@@ -9,7 +9,7 @@ const TodoData = ({ todoList }) => {
             <div>{item.task}</div>
             <div className="todo-item__button">
               <button>Update</button>
-              <button>Remove</button>
+              <button onClick={() => handleDeleteTodo(item.id)}>Remove</button>
             </div>
           </div>
         );
