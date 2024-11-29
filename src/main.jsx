@@ -2,6 +2,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
+import UsersPage from "./pages/UsersPage.jsx";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import "./styles/global.css";
 
 const router = createBrowserRouter([
   {
@@ -10,19 +15,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <div>Register Page</div>,
+    element: <RegisterPage />,
   },
   {
     path: "/login",
-    element: <div>Login Page</div>,
+    element: <LoginPage />,
   },
   {
     path: "/users",
-    element: <div>Users Page</div>,
+    element: <UsersPage />,
   },
   {
     path: "/products",
-    element: <div>Products Page</div>,
+    element: <ProductsPage />,
   },
 ]);
 
