@@ -3,6 +3,8 @@ import TodoData from "./components/todo/TodoData";
 import TodoNew from "./components/todo/TodoNew";
 import reactLogo from "./assets/react.svg";
 import { useState } from "react";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 const App = () => {
   /*   const data = {
@@ -39,27 +41,32 @@ const App = () => {
   };
 
   return (
-    <div className="todo-container">
-      <div className="todo-title">Todo List</div>
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title">Todo List</div>
 
-      <TodoNew handleAddNewTodo={handleAddNewTodo} />
+        <TodoNew handleAddNewTodo={handleAddNewTodo} />
 
-      {todoList.length > 0 ? (
-        <TodoData todoList={todoList} handleDeleteTodo={handleDeleteTodo} />
-      ) : (
-        <div className="todo-image">
-          <img src={reactLogo} className="logo" alt="react-logo" />
-        </div>
-      )}
+        {todoList.length > 0 ? (
+          <TodoData todoList={todoList} handleDeleteTodo={handleDeleteTodo} />
+        ) : (
+          <div className="todo-image">
+            <img src={reactLogo} className="logo" alt="react-logo" />
+          </div>
+        )}
 
-      {/* {todoList.length > 0 && <TodoData todoList={todoList} />}
+        {/* {todoList.length > 0 && <TodoData todoList={todoList} />}
 
       {todoList.length === 0 && (
         <div className="todo-image">
           <img src={reactLogo} className="logo" alt="react-logo" />
         </div>
       )} */}
-    </div>
+      </div>
+
+      <Footer />
+    </>
   );
 };
 
