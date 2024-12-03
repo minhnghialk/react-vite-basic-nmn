@@ -1,3 +1,4 @@
+import "./User.Table.Module.css";
 import { Table } from "antd";
 import { fetchAllUserAPI } from "../../services/api.service";
 import { useEffect, useState } from "react";
@@ -40,7 +41,12 @@ const UserTable = () => {
     loadUser();
   }, []);
 
-  return <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />;
+  return (
+    <>
+      <h1 className="user-table-title">User List Table</h1>
+      <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
+    </>
+  );
 };
 
 export default UserTable;
