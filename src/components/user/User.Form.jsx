@@ -3,7 +3,7 @@ import { Button, Input, notification, Modal } from "antd";
 import { useState } from "react";
 import { createNewUserAPI } from "../../services/api.service";
 
-const UserForm = () => {
+const UserForm = ({ loadUser }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,6 @@ const UserForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCreateNewUser = async () => {
-    setIsModalOpen(false);
     const response = await createNewUserAPI({
       fullName,
       email,
@@ -25,12 +24,25 @@ const UserForm = () => {
         message: "Success",
         description: "Create a new user successfully",
       });
+
+      resetAndCloseModal();
+
+      await loadUser();
     } else {
       notification.error({
         message: "Error",
         description: JSON.stringify(response.message),
       });
     }
+  };
+
+  const resetAndCloseModal = () => {
+    setIsModalOpen(false);
+
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setPhone("");
   };
   return (
     <>
@@ -47,7 +59,7 @@ const UserForm = () => {
         title="User Registration Form"
         open={isModalOpen}
         onOk={handleCreateNewUser}
-        onCancel={() => setIsModalOpen(false)}
+        onCancel={resetAndCloseModal}
         maskClosable={false}
         okText="Create"
       >
