@@ -1,7 +1,7 @@
 // import axios from "axios";
 import axios from "./axios.customize";
 
-export const createNewUserAPI = ({ fullName, email, password, phone }) => {
+export const createNewUserAPI = (fullName, email, password, phone) => {
   const URL_BACKEND = "/api/v1/user";
   const data = {
     fullName,
@@ -12,7 +12,15 @@ export const createNewUserAPI = ({ fullName, email, password, phone }) => {
   return axios.post(URL_BACKEND, data);
 };
 
-export const updateUserAPI = () => {};
+export const updateUserAPI = (_id, fullName, phone) => {
+  const URL_BACKEND = "/api/v1/user";
+  const data = {
+    _id,
+    fullName,
+    phone,
+  };
+  return axios.put(URL_BACKEND, data);
+};
 
 export const fetchAllUserAPI = () => {
   const URL_BACKEND = "/api/v1/user";

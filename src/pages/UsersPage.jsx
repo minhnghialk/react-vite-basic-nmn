@@ -25,8 +25,8 @@ const UsersPage = () => {
 
   return (
     <div className="container">
-      <UserForm loadUser={loadUser}/>
-      <UserTable dataUsers={dataUsers} />
+      <UserForm loadUser={loadUser} />
+      <UserTable loadUser={loadUser} dataUsers={dataUsers} />
     </div>
   );
 };

@@ -1,3 +1,20 @@
+.action-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.action-icon {
+  cursor: pointer;
+}
+
+.edit-icon {
+  color: orange;
+}
+
+.delete-icon {
+  color: red;
+}
+
 .user-table-title {
   text-align: center;
   margin-bottom: 16px;
