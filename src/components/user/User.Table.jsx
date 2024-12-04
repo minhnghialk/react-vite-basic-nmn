@@ -1,12 +1,38 @@
 import "./User.Table.Module.css";
-import { Table } from "antd";
+import { Table, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import UpdateUserModal from "./Update.User.Modal";
 import { useState } from "react";
+import ViewUserDetailModal from "./View.User.Detail.Modal";
+import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = ({ loadUser, dataUsers }) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
+
+  const [isModalDetailOpen, setIsModalDetailOpen] = useState(false);
+  const [dataDetail, setDataDetail] = useState({});
+
+  const [isModalConfirmDeleteOpen, setIsModalConfirmDeleteOpen] =
+    useState(false);
+
+  const handleDeleteUser = async (id) => {
+    const response = await deleteUserAPI(id);
+
+    if (response.data) {
+      notification.success({
+        message: "Success",
+        description: "Delete user successfully",
+      });
+
+      await loadUser();
+    } else {
+      notification.error({
+        message: "Error",
+        description: JSON.stringify(response.message),
+      });
+    }
+  };
 
   const columns = [
     {
@@ -14,7 +40,15 @@ const UserTable = ({ loadUser, dataUsers }) => {
       dataIndex: "_id",
       render: (_, record) => (
         <>
-          <a href="#">{record._id}</a>
+          <a
+            href="#"
+            onClick={() => {
+              setDataDetail(record);
+              setIsModalDetailOpen(true);
+            }}
+          >
+            {record._id}
+          </a>
         </>
       ),
     },
@@ -42,7 +76,21 @@ const UserTable = ({ loadUser, dataUsers }) => {
               setIsModalUpdateOpen(true);
             }}
           />
-          <DeleteOutlined className="action-icon delete-icon" />
+          <Popconfirm
+            title="Delete the user"
+            description="Are you sure to delete this user?"
+            open={isModalConfirmDeleteOpen}
+            onConfirm={() => handleDeleteUser(record._id)}
+            onCancel={() => setIsModalConfirmDeleteOpen(false)}
+            okText="Delete"
+            cancelText="Cancel"
+            placement="topLeft"
+          >
+            <DeleteOutlined
+              className="action-icon delete-icon"
+              onClick={() => setIsModalConfirmDeleteOpen(true)}
+            />
+          </Popconfirm>
         </div>
       ),
     },
@@ -60,6 +108,13 @@ const UserTable = ({ loadUser, dataUsers }) => {
         dataUpdate={dataUpdate}
         setDataUpdate={setDataUpdate}
         loadUser={loadUser}
+      />
+
+      <ViewUserDetailModal
+        isModalDetailOpen={isModalDetailOpen}
+        setIsModalDetailOpen={setIsModalDetailOpen}
+        dataDetail={dataDetail}
+        setDataDetail={setDataDetail}
       />
     </>
   );

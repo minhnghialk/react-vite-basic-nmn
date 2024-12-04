@@ -1,7 +1,7 @@
 import "./Update.User.Modal.Module.css";
 import { useState, useEffect } from "react";
 import { Input, notification, Modal } from "antd";
-import { UpdateUserAPI } from "../../services/api.service";
+import { updateUserAPI } from "../../services/api.service";
 
 const UpdateUserModal = ({
   isModalUpdateOpen,
@@ -23,7 +23,7 @@ const UpdateUserModal = ({
   }, [dataUpdate]);
 
   const handleUpdateUser = async () => {
-    const response = await UpdateUserAPI({
+    const response = await updateUserAPI({
       id,
       fullName,
       phone,
@@ -47,12 +47,12 @@ const UpdateUserModal = ({
   };
 
   const resetAndCloseModal = () => {
-    setIsModalUpdateOpen(false);
-
     setId("");
     setFullName("");
     setPhone("");
     setDataUpdate(null);
+
+    setIsModalUpdateOpen(false);
   };
 
   return (

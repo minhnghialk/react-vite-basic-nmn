@@ -1,0 +1,35 @@
+.user-detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border: 1px solid #ccc;
+  padding: 32px;
+  text-align: center;
+  color: blue;
+}
+
+.user-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-avatar img {
+  object-fit: cover;
+}
+
+.upload-btn {
+  display: block;
+  width: fit-content;
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #1477f7;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #3098ff;
+}
