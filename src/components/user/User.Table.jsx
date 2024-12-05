@@ -1,5 +1,5 @@
 import "./User.Table.Module.css";
-import { Table, Popconfirm } from "antd";
+import { Table, Popconfirm, notification } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import UpdateUserModal from "./Update.User.Modal";
 import { useState } from "react";
@@ -115,6 +115,7 @@ const UserTable = ({ loadUser, dataUsers }) => {
         setIsModalDetailOpen={setIsModalDetailOpen}
         dataDetail={dataDetail}
         setDataDetail={setDataDetail}
+        loadUser={loadUser}
       />
     </>
   );

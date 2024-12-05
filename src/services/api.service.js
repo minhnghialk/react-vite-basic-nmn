@@ -23,13 +23,38 @@ export const updateUserAPI = (_id, fullName, phone) => {
 };
 
 export const fetchAllUserAPI = () => {
-  const URL_BACKEND = "/api/v1/user";
+  const URL_BACKEND = "/api/v1/user?current=1&pageSize=1";
   return axios.get(URL_BACKEND);
 };
 
 export const deleteUserAPI = (id) => {
   const URL_BACKEND = `/api/v1/user/${id}`;
   return axios.delete(URL_BACKEND);
+};
+
+export const hanldeUploadFileAPI = (file, folder) => {
+  const URL_BACKEND = "/api/v1/file/upload";
+
+  let config = {
+    headers: {
+      "upload-type": folder,
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  const bodyFormData = new FormData();
+  bodyFormData.append("fileImg", file);
+
+  return axios.post(URL_BACKEND, bodyFormData, config);
+};
+
+export const updateUserAvatarAPI = (_id, avatar) => {
+  const URL_BACKEND = "/api/v1/user";
+  const data = {
+    _id,
+    avatar
+  };
+  return axios.put(URL_BACKEND, data);
 };
 
 // export {
