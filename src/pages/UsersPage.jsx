@@ -48,21 +48,63 @@ const UsersPage = () => {
       email: "test-3@gmail.com",
       phone: "0369274783",
     },
+    {
+      _id: 8,
+      fullName: "Test-4",
+      email: "test-4@gmail.com",
+      phone: "0369274783",
+    },
+    {
+      _id: 9,
+      fullName: "Test-5",
+      email: "test-5@gmail.com",
+      phone: "0369274783",
+    },
+    {
+      _id: 10,
+      fullName: "Test-6",
+      email: "test-6@gmail.com",
+      phone: "0369274783",
+    },
+    {
+      _id: 11,
+      fullName: "Test-7",
+      email: "test-7@gmail.com",
+      phone: "0369274783",
+    },
   ]);
 
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [total, setTotal] = useState(0);
+
   const loadUser = async () => {
-    const response = await fetchAllUserAPI();
-    if (response.data) setDataUsers(response.data);
+    const response = await fetchAllUserAPI(current, pageSize);
+    if (response.data) {
+      setDataUsers(response.data.result);
+      setCurrent(response.data.meta.current);
+      setPageSize(response.data.meta.pageSize);
+      setPageSize(response.data.meta.total);
+    }
   };
 
   useEffect(() => {
     loadUser();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current, pageSize]);
 
   return (
     <div className="container">
       <UserForm loadUser={loadUser} />
-      <UserTable loadUser={loadUser} dataUsers={dataUsers} />
+      <UserTable
+        loadUser={loadUser}
+        dataUsers={dataUsers}
+        current={current}
+        pageSize={pageSize}
+        total={total}
+        setCurrent={setCurrent}
+        setPageSize={setPageSize}
+      />
     </div>
   );
 };

@@ -22,8 +22,8 @@ export const updateUserAPI = (_id, fullName, phone) => {
   return axios.put(URL_BACKEND, data);
 };
 
-export const fetchAllUserAPI = () => {
-  const URL_BACKEND = "/api/v1/user?current=1&pageSize=1";
+export const fetchAllUserAPI = (current, pageSize) => {
+  const URL_BACKEND = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
   return axios.get(URL_BACKEND);
 };
 
@@ -52,7 +52,7 @@ export const updateUserAvatarAPI = (_id, avatar) => {
   const URL_BACKEND = "/api/v1/user";
   const data = {
     _id,
-    avatar
+    avatar,
   };
   return axios.put(URL_BACKEND, data);
 };

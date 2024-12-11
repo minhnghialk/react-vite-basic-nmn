@@ -1,0 +1,12 @@
+.register-container {
+  margin: 50px;
+}
+
+.register-title {
+  text-align: center;
+}
+
+.register-btn {
+  display: flex;
+  justify-content: center;
+}
