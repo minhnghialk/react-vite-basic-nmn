@@ -5,8 +5,9 @@ import {
   HomeOutlined,
   UsergroupAddOutlined,
   BookOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { Children, useState } from "react";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
@@ -31,6 +32,21 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
+    {
+      label: "Setting",
+      key: "setting",
+      icon: <SettingOutlined/>,
+      children: [
+        {
+          label: <Link to={"/login"}>Login</Link>,
+          key: "login"
+        },
+        {
+          label: "Logout",
+          key: "logout"
+        }
+      ]
+    }
   ];
   return (
     <Menu
