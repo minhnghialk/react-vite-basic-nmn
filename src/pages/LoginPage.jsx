@@ -12,10 +12,13 @@ import {
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserAPI } from "../services/api.service";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
+  const { setUserInfo } = useContext(AuthContext);
   const [isLoading, setisLoading] = useState(false);
+
   let navigate = useNavigate();
 
   const [form] = Form.useForm();
@@ -28,8 +31,11 @@ const LoginPage = () => {
     if (response.data) {
       message.success("Login successfully");
 
-      navigate("/");
+      localStorage.setItem("access_token", response.data.access_token);
 
+      setUserInfo(response.data.user);
+
+      navigate("/");
     } else {
       notification.error({
         message: "Error",

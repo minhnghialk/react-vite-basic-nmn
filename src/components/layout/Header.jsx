@@ -7,10 +7,14 @@ import {
   BookOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Children, useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
+
+  const { userInfo } = useContext(AuthContext);
+
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
@@ -35,18 +39,18 @@ const Header = () => {
     {
       label: "Setting",
       key: "setting",
-      icon: <SettingOutlined/>,
+      icon: <SettingOutlined />,
       children: [
         {
           label: <Link to={"/login"}>Login</Link>,
-          key: "login"
+          key: "login",
         },
         {
           label: "Logout",
-          key: "logout"
-        }
-      ]
-    }
+          key: "logout",
+        },
+      ],
+    },
   ];
   return (
     <Menu

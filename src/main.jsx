@@ -8,6 +8,7 @@ import BooksPage from "./pages/BookPage.jsx";
 import "./styles/global.css";
 import TodoApp from "./components/todo/TodoApp.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import { AuthWrapper } from "./components/context/auth.context.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <>
+  <AuthWrapper>
     <RouterProvider router={router} />
-  </>
+  </AuthWrapper>
 );
