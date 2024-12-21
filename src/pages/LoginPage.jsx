@@ -45,6 +45,13 @@ const LoginPage = () => {
 
     setisLoading(false);
   };
+
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      const values = await form.validateFields();
+      onFinish(values);
+    }
+  };
   return (
     <>
       <Row justify={"center"} className="login-form-container">
@@ -86,7 +93,7 @@ const LoginPage = () => {
                   },
                 ]}
               >
-                <Input.Password />
+                <Input.Password onKeyDown={handleKeyDown} />
               </Form.Item>
 
               <Form.Item>

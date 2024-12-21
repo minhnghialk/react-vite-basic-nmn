@@ -19,8 +19,10 @@ export const AuthWrapper = ({children}) => {
     role: "",
   });
 
+  const [isAppLoading, setIsAppLoading] = useState(false);
+
   return (
-    <AuthContext.Provider value={{ userInfo, setUserInfo }}>
+    <AuthContext.Provider value={{ userInfo, setUserInfo, isAppLoading, setIsAppLoading }}>
       {children}
     </AuthContext.Provider>
   );

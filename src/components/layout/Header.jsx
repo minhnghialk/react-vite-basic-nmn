@@ -5,7 +5,9 @@ import {
   HomeOutlined,
   UsergroupAddOutlined,
   BookOutlined,
+  LoginOutlined,
   SettingOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
@@ -36,21 +38,32 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
-    {
-      label: "Setting",
-      key: "setting",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          label: <Link to={"/login"}>Login</Link>,
-          key: "login",
-        },
-        {
-          label: "Logout",
-          key: "logout",
-        },
-      ],
-    },
+    ...(!userInfo.id
+      ? [
+          {
+            label: <Link to={"/login"}>Login</Link>,
+            key: "login",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : []),
+
+    ...(userInfo.id
+      ? [
+          {
+            label: `Welcome ${userInfo.fullName}`,
+            key: "setting",
+            icon: <SettingOutlined />,
+            children: [
+              {
+                label: "Logout",
+                key: "logout",
+                icon: <LogoutOutlined />,
+              },
+            ],
+          },
+        ]
+      : []),
   ];
   return (
     <Menu
