@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "./Header.css";
-import { Menu } from "antd";
+import { Menu, message } from "antd";
 import {
   HomeOutlined,
   UsergroupAddOutlined,
@@ -11,15 +11,39 @@ import {
 } from "@ant-design/icons";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
+import { logOutAPI } from "../../services/api.service";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
 
-  const { userInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { userInfo, setUserInfo } = useContext(AuthContext);
 
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
+  };
+
+  const handleLogout = async () => {
+    const response = await logOutAPI();
+    if (response.data) {
+      // clear data
+      localStorage.removeItem("access_token");
+
+      setUserInfo({
+        id: "",
+        fullName: "",
+        avatar: "",
+        email: "",
+        phone: "",
+        role: "",
+      });
+
+      message.success("Log out successfully!");
+
+      // redirect to homepage
+      navigate("/");
+    }
   };
 
   const items = [
@@ -48,22 +72,34 @@ const Header = () => {
         ]
       : []),
 
-    ...(userInfo.id
-      ? [
-          {
-            label: `Welcome ${userInfo.fullName}`,
-            key: "setting",
-            icon: <SettingOutlined />,
-            children: [
-              {
-                label: "Logout",
-                key: "logout",
-                icon: <LogoutOutlined />,
-              },
-            ],
-          },
-        ]
-      : []),
+    // ...(userInfo.id
+    //   ? [
+    //       {
+    //         label: `Welcome ${userInfo.fullName}`,
+    //         key: "setting",
+    //         icon: <SettingOutlined />,
+    //         children: [
+    //           {
+    //             label: <span onClick={() => handleLogout()}>Logout</span>,
+    //             key: "logout",
+    //             icon: <LogoutOutlined />,
+    //           },
+    //         ],
+    //       },
+    //     ]
+    //   : []),
+    {
+      label: `Welcome ${userInfo.fullName}`,
+      key: "setting",
+      icon: <SettingOutlined />,
+      children: [
+        {
+          label: <span onClick={() => handleLogout()}>Logout</span>,
+          key: "logout",
+          icon: <LogoutOutlined />,
+        },
+      ],
+    },
   ];
   return (
     <Menu
