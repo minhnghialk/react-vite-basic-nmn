@@ -130,7 +130,7 @@ const ViewUserDetailModal = ({
         </>
       ) : (
         <>
-          <p>No data to displayÏ</p>
+          <p>No data to display</p>
         </>
       )}
     </Drawer>

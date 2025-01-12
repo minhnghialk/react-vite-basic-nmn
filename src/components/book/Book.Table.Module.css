@@ -1,0 +1,28 @@
+.book-table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.book-table-title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .action-wrapper {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .action-icon {
+    cursor: pointer;
+  }
+  
+  .edit-icon {
+    color: orange;
+  }
+  
+  .delete-icon {
+    color: red;
+  }
+  

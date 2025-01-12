@@ -89,7 +89,7 @@ const Header = () => {
     //     ]
     //   : []),
     {
-      label: `Welcome ${userInfo.fullName}`,
+      label: `Welcome Nguyễn Minh Nghĩa`,
       key: "setting",
       icon: <SettingOutlined />,
       children: [

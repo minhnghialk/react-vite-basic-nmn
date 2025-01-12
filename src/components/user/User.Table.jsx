@@ -135,7 +135,6 @@ const UserTable = ({
           showTotal: (total, range) => {
             return (
               <div>
-                {" "}
                 {range[0]}-{range[1]} on {total} rows
               </div>
             );
